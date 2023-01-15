@@ -7,11 +7,11 @@ import './bootstrap';
 // Alpine.start();
 
 import { createApp } from 'vue'
-import App from './components/Posts/Index.vue'
+import PostsIndex from './components/Posts/Index.vue'
 
 
-createApp(App).mount("#app")
+createApp(PostsIndex).mount("#app")
 
 // const app = createApp({})
 // app.component('posts-index', PostsIndex)
-// app.mount('#app')
+// app.mount("#app")
