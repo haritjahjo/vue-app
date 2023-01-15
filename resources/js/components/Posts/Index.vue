@@ -16,24 +16,24 @@
             <table class="min-w-full divide-y divide-gray-300">
               <thead class="bg-gray-50">
                 <tr>
-                  <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8">Name</th>
+                  <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8">ID</th>
                   <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Title</th>
-                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Email</th>
-                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Role</th>
+                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Content</th>
+                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Created at</th>
                   <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6 lg:pr-8">
                     <span class="sr-only">Edit</span>
                   </th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-200 bg-white">
-                <tr v-for="person in people" :key="person.email">
-                  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">{{ person.name }}</td>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ person.title }}</td>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ person.email }}</td>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ person.role }}</td>
-                  <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 lg:pr-8">
+                <tr v-for="post in posts" >
+                  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">{{ post.id }}</td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{{ post.title }}</td>
+                  <td class="whitespace-pre-wrap px-3 py-4 text-sm text-gray-900">{{ post.content }}</td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{{ post.created_at }}</td>
+                  <td class="relative whitespace-pre-wrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 lg:pr-8">
                     <a href="#" class="text-indigo-600 hover:text-indigo-900"
-                      >Edit<span class="sr-only">, {{ person.name }}</span></a
+                      >Edit<span class="sr-only">, {{ post.id }}</span></a
                     >
                   </td>
                 </tr>
@@ -46,10 +46,22 @@
   </div>
 </template>
 
-<script setup>
-const people = [
-  { name: 'Lindsay Walton', title: 'Front-end Developer', email: 'lindsay.walton@example.com', role: 'Member' },
-  { name: 'Walter Walton', title: 'Back-end Developer', email: 'walter.walton@example.com', role: 'Member' },
-  // More people...
-]
+<script>
+export default {
+    data() {
+        return {
+            posts: []
+        }
+    },
+    mounted() {
+        this.fetchPosts()
+    },
+    methods: {
+        fetchPosts() {
+            axios.get('/api/posts')
+            .then(response => this.posts = response.data)
+            .catch(error => console.log(error))
+        }
+    }
+}
 </script>

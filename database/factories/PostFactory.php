@@ -17,7 +17,8 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->text(maxNbChars:20),
+            'content' => $this->faker->paragraphs(nb:5,asText:true),
         ];
     }
 }
