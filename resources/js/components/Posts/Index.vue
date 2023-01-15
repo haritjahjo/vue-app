@@ -29,9 +29,9 @@
                 <tr v-for="post in posts" >
                   <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">{{ post.id }}</td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{{ post.title }}</td>
-                  <td class="whitespace-pre-wrap px-3 py-4 text-sm text-gray-900">{{ post.content }}</td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{{ post.content }}</td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{{ post.created_at }}</td>
-                  <td class="relative whitespace-pre-wrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 lg:pr-8">
+                  <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 lg:pr-8">
                     <a href="#" class="text-indigo-600 hover:text-indigo-900"
                       >Edit<span class="sr-only">, {{ post.id }}</span></a
                     >
